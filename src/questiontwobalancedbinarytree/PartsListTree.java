@@ -20,15 +20,49 @@ public class PartsListTree {
         root = null;
     }
 
-    public void add(String part) {
-
+    private PartsListTreeNode addToNode(PartsListTreeNode node, String part) {
+        if (node == null) {
+            return new PartsListTreeNode(part);
+        } else if (part.compareTo(node.getPart()) > 0) {
+            // new part comes after, so put in the right sub tree
+            PartsListTreeNode rightNode = node.getRightNode();
+            rightNode = addToNode(rightNode, part);
+            node.setRightNode(rightNode);
+        } else {
+            // new part comes before, so put in the left sub tree
+            PartsListTreeNode leftNode = node.getLeftNode();
+            leftNode = addToNode(leftNode, part);
+            node.setLeftNode(leftNode);
+        }
+        return node;
     }
 
+    public void add(String part) {
+        root = addToNode(root, part);
+    }
+
+    
+    
     public void remove(String part) {
 
     }
 
+    private boolean nodeContains(PartsListTreeNode node, String part) {
+        if (node == null) {
+            return false;
+        } else if (part.compareTo(node.getPart()) == 0) {
+            return true;
+        } else if (part.compareTo(node.getPart()) > 0) {
+            // part comes after, so check in the right sub tree
+            return nodeContains(node.getRightNode(), part);
+        } else {
+            // part comes before, so check in the left sub tree
+            return nodeContains(node.getLeftNode(), part);
+        }
+    }
+    
+    
     public boolean contains(String part) {
-        return false; // Placeholder value for unimplemented method
+        return nodeContains(root, part);
     }
 }

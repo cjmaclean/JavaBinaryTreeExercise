@@ -11,7 +11,7 @@ import org.junit.Before;
 
 /**
  *
- * @author caspian
+ * @author Caspian Maclean 30039802
  */
 public class PartsListTreeTest {
 
