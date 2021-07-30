@@ -9,11 +9,13 @@ public class PartsListTreeNode {
     private String part;
     private PartsListTreeNode leftNode;
     private PartsListTreeNode rightNode;
+    private int height;
 
     public PartsListTreeNode(String part) {
         this.part = part;
         leftNode = null;
         rightNode = null;
+        updateHeight();
     }
 
     /**
@@ -42,6 +44,7 @@ public class PartsListTreeNode {
      */
     public void setLeftNode(PartsListTreeNode leftNode) {
         this.leftNode = leftNode;
+        updateHeight();
     }
 
     /**
@@ -56,5 +59,32 @@ public class PartsListTreeNode {
      */
     public void setRightNode(PartsListTreeNode rightNode) {
         this.rightNode = rightNode;
+        updateHeight();
     }
+
+    /**
+     * @return the height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @return the height of a node, or 0 for null
+     */
+    public static int getHeight(PartsListTreeNode node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return node.getHeight();
+        }
+    }
+
+    // Update the nodes height based on its left and right subtrees.
+    // To be called whenever left or right subtrees are set.
+    private void updateHeight() {
+        // One more than the height of the highest subtree.
+        height = 1 + Integer.max(getHeight(getLeftNode()), getHeight(getLeftNode()));
+    }
+
 }
