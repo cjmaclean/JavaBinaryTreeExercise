@@ -8,19 +8,26 @@ package questiontwobalancedbinarytree;
 /**
  *
  * @author Caspian Maclean 30039802
- * 
+ *
  * Class to hold a list of mechanical parts in a balanced binary tree.
- * 
+ *
  */
 public class PartsListTree {
+
+    PartsListTreeNode root;
+
+    public PartsListTree() {
+        root = null;
+    }
+
     public void add(String part) {
-        
+
     }
-    
+
     public void remove(String part) {
-        
+
     }
-    
+
     public boolean contains(String part) {
         return false; // Placeholder value for unimplemented method
     }
