@@ -41,10 +41,52 @@ public class PartsListTree {
         root = addToNode(root, part);
     }
 
-    
-    
-    public void remove(String part) {
+    private String firstPartFromNode(PartsListTreeNode node) {
+        if (node.getLeftNode() == null) {
+            return node.getPart();
+        } else {
+            return firstPartFromNode(node.getLeftNode());
+        }
+    }
 
+    private PartsListTreeNode removeFromNode(PartsListTreeNode node, String part) {
+        if (node == null) {
+            return null;
+        } else if (part.compareTo(node.getPart()) == 0) {
+            // found the part, need to remove it.
+
+            // if one subtree is null, return the other one (which may also be null)
+            if (node.getLeftNode() == null) {
+                return node.getRightNode();
+            }
+            if (node.getRightNode() == null) {
+                return node.getLeftNode();
+            } else {
+                // otherwise take the first part in the right subtree, and
+                // use it to replace the current part
+                PartsListTreeNode rightNode = node.getRightNode();
+                String replacement = firstPartFromNode(rightNode);
+                node.setPart(replacement);
+                rightNode = removeFromNode(rightNode, replacement);
+                node.setRightNode(rightNode);
+            }
+
+        } else if (part.compareTo(node.getPart()) > 0) {
+            // part comes after, so remove from the right sub tree
+            PartsListTreeNode rightNode = node.getRightNode();
+            rightNode = removeFromNode(rightNode, part);
+            node.setRightNode(rightNode);
+        } else {
+            // new part comes before, so remove from the left sub tree
+            PartsListTreeNode leftNode = node.getLeftNode();
+            leftNode = removeFromNode(leftNode, part);
+            node.setLeftNode(leftNode);
+        }
+        return node;
+    }
+
+    public void remove(String part) {
+        root = removeFromNode(root, part);
     }
 
     private boolean nodeContains(PartsListTreeNode node, String part) {
@@ -60,8 +102,7 @@ public class PartsListTree {
             return nodeContains(node.getLeftNode(), part);
         }
     }
-    
-    
+
     public boolean contains(String part) {
         return nodeContains(root, part);
     }
