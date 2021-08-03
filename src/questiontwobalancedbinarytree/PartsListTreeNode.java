@@ -75,6 +75,7 @@ public class PartsListTreeNode {
     }
 
     /**
+     * @param node the node to get the height of
      * @return the height of a node, or 0 for null
      */
     public static int getHeight(PartsListTreeNode node) {
