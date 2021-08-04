@@ -63,4 +63,35 @@ public class PartsListTreeTest {
         assertFalse(tree.contains("acksell"));
     }
 
+    public PartsListTreeNode exampleBalancedTreeNode() {
+        PartsListTreeNode axle = new PartsListTreeNode("axle");
+        PartsListTreeNode belt = new PartsListTreeNode("belt");
+        PartsListTreeNode cog = new PartsListTreeNode("cog");
+        PartsListTreeNode connectingRod = new PartsListTreeNode("connecting rod");
+        PartsListTreeNode cylinder = new PartsListTreeNode("cylinder");
+        PartsListTreeNode diff = new PartsListTreeNode("diff");
+        PartsListTreeNode gasket = new PartsListTreeNode("gasket");
+        belt.setLeftNode(axle);
+        belt.setRightNode(cog);
+        diff.setLeftNode(cylinder);
+        diff.setRightNode(gasket);
+        connectingRod.setLeftNode(belt);
+        connectingRod.setRightNode(diff);
+        return connectingRod;
+    }
+    
+    /**
+     * Test of rotateNodeLeft method, of class PartsListTree.
+     */
+    @Test
+    public void testRotateNodeLeft() {
+    }
+
+    /**
+     * Test of rotateNodeRight method, of class PartsListTree.
+     */
+    @Test
+    public void testRotateNodeRight() {
+    }
+
 }

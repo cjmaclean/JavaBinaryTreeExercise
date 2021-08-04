@@ -106,4 +106,26 @@ public class PartsListTree {
     public boolean contains(String part) {
         return nodeContains(root, part);
     }
+    
+    // Balancing functions
+    
+    public PartsListTreeNode rotateNodeLeft(PartsListTreeNode topNode) {
+        PartsListTreeNode oldRightNode = topNode.getRightNode();
+        PartsListTreeNode newTopNode = oldRightNode;
+        PartsListTreeNode midNode = oldRightNode.getLeftNode();
+        PartsListTreeNode newLeftNode = topNode;
+        newLeftNode.setRightNode(midNode);
+        newTopNode.setLeftNode(newLeftNode);
+        return newTopNode;
+    }
+
+    public PartsListTreeNode rotateNodeRight(PartsListTreeNode topNode) {
+        PartsListTreeNode oldLeftNode = topNode.getLeftNode();
+        PartsListTreeNode newTopNode = oldLeftNode;
+        PartsListTreeNode midNode = oldLeftNode.getRightNode();
+        PartsListTreeNode newRightNode = topNode;
+        newRightNode.setLeftNode(midNode);
+        newTopNode.setRightNode(newRightNode);
+        return newTopNode;
+    }
 }
