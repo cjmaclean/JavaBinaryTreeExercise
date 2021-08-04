@@ -4,11 +4,9 @@ package questiontwobalancedbinarytree;
  *
  * @author Caspian Maclean 30039802
  */
-
 // Class to store a node in a binary tree of mechanical parts.
 // Note: if the left or right tree is changed, setLeftNode or setRightNode
 // should be called to make sure the height is recalculated.
-
 public class PartsListTreeNode {
 
     private String part;
@@ -93,4 +91,26 @@ public class PartsListTreeNode {
         height = 1 + Integer.max(getHeight(getLeftNode()), getHeight(getRightNode()));
     }
 
+    public boolean heightCorrect() {
+        int computedHeight = 1 + Integer.max(getHeight(getLeftNode()), getHeight(getRightNode()));
+        if (height != computedHeight) {
+            return false;
+        } else if (!heightCorrect(getLeftNode())) {
+            return false;
+        } else if (!heightCorrect(getRightNode())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static boolean heightCorrect(PartsListTreeNode node) {
+        if (node == null) {
+            // No stored height
+            return true;
+        } else {
+            return node.heightCorrect();
+        }
+    }
+    
 }

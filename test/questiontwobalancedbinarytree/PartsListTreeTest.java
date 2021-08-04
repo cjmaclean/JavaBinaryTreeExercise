@@ -79,12 +79,39 @@ public class PartsListTreeTest {
         connectingRod.setRightNode(diff);
         return connectingRod;
     }
-    
+
+    public PartsListTree exampleBalancedTree() {
+        // Add in order for it to balance without rotations:
+
+        PartsListTree tree = new PartsListTree();
+
+        //top node
+        tree.add("connecting rod");
+
+        //second level nodes
+        tree.add("belt");
+        tree.add("diff");
+
+        // third level nodes
+        tree.add("axle");
+        tree.add("cog");
+        tree.add("cylinder");
+        tree.add("gasket");
+
+        return tree;
+    }
+
     /**
      * Test of rotateNodeLeft method, of class PartsListTree.
      */
     @Test
     public void testRotateNodeLeft() {
+        PartsListTreeNode root = exampleBalancedTreeNode();
+        root = PartsListTree.rotateNodeLeft(root);
+        System.out.println("rotate left:");
+
+        System.out.println(PartsListTree.formattedStringDisplay(root, ""));
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,6 +119,11 @@ public class PartsListTreeTest {
      */
     @Test
     public void testRotateNodeRight() {
+        PartsListTreeNode root = exampleBalancedTreeNode();
+        root = PartsListTree.rotateNodeRight(root);
+        System.out.println("rotate right:");
+        System.out.println(PartsListTree.formattedStringDisplay(root, ""));
+        fail("The test case is a prototype.");
     }
 
 }

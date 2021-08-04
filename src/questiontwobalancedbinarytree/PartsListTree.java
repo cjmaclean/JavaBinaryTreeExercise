@@ -34,6 +34,7 @@ public class PartsListTree {
             leftNode = addToNode(leftNode, part);
             node.setLeftNode(leftNode);
         }
+        node = balanceTree(node);
         return node;
     }
 
@@ -82,6 +83,7 @@ public class PartsListTree {
             leftNode = removeFromNode(leftNode, part);
             node.setLeftNode(leftNode);
         }
+        node = balanceTree(node);
         return node;
     }
 
@@ -109,7 +111,7 @@ public class PartsListTree {
     
     // Balancing functions
     
-    public PartsListTreeNode rotateNodeLeft(PartsListTreeNode topNode) {
+    static public PartsListTreeNode rotateNodeLeft(PartsListTreeNode topNode) {
         PartsListTreeNode oldRightNode = topNode.getRightNode();
         PartsListTreeNode newTopNode = oldRightNode;
         PartsListTreeNode midNode = oldRightNode.getLeftNode();
@@ -119,7 +121,7 @@ public class PartsListTree {
         return newTopNode;
     }
 
-    public PartsListTreeNode rotateNodeRight(PartsListTreeNode topNode) {
+    static public PartsListTreeNode rotateNodeRight(PartsListTreeNode topNode) {
         PartsListTreeNode oldLeftNode = topNode.getLeftNode();
         PartsListTreeNode newTopNode = oldLeftNode;
         PartsListTreeNode midNode = oldLeftNode.getRightNode();
@@ -127,5 +129,77 @@ public class PartsListTree {
         newRightNode.setLeftNode(midNode);
         newTopNode.setRightNode(newRightNode);
         return newTopNode;
+    }
+    
+    // Based on code provided in Programming 3 class.
+    private PartsListTreeNode balanceTree(PartsListTreeNode current) {
+        int currentBalanceFactor = balanceFactor(current);
+        if (currentBalanceFactor > 1) {
+            if (balanceFactor(current.getLeftNode()) > 0) {
+                current = rotateLL(current);
+            } else {
+                current = rotateLR(current);
+            }
+        } else if (currentBalanceFactor < -1) {
+            if (balanceFactor(current.getRightNode()) > 0) {
+                current = rotateRL(current);
+            } else {
+                current = rotateRR(current);
+            }
+        }
+        return current;
+    }
+    
+    private int balanceFactor(PartsListTreeNode node) {
+        return PartsListTreeNode.getHeight(node.getLeftNode()) -
+                PartsListTreeNode.getHeight(node.getRightNode());
+    }
+    
+    // Right subtree and right subtree of right subtree are high, so rotate left
+    private PartsListTreeNode rotateRR(PartsListTreeNode parent) {
+        return rotateNodeLeft(parent);
+    }
+    
+    // Left subtree and left subtree of left subtree are high, so rotate right
+    private PartsListTreeNode rotateLL(PartsListTreeNode parent) {
+        return rotateNodeRight(parent);
+    }
+    
+    // Left subtree and right subtree of left subtree are high,
+    // so rotate the left subtree left, then rotate the main node right
+    private PartsListTreeNode rotateLR(PartsListTreeNode parent) {
+        PartsListTreeNode pivot = parent.getLeftNode();
+        parent.setLeftNode(rotateNodeLeft(pivot));
+        return rotateNodeRight(parent);
+    }
+    
+    // Right subtree and left subtree of right subtree are high,
+   // so rotate the right subtree right, then rotate the main node left
+    private PartsListTreeNode rotateRL(PartsListTreeNode parent) {
+        PartsListTreeNode pivot = parent.getRightNode();
+        parent.setRightNode(rotateNodeRight(pivot));
+        return rotateNodeLeft(parent);
+    }
+    
+    // Viewing for debugging:
+    
+    public String formattedStringDisplay() {
+        return formattedStringDisplay(root, "");
+    } 
+
+    public static String formattedStringDisplay(PartsListTreeNode node, String paddingString) {
+        if (node == null) {
+            return "";
+        } else {
+            String nextPadding = paddingString + " - ";
+            return
+                    formattedStringDisplay(node.getLeftNode(), nextPadding) +
+                    paddingString + node.getPart() + "\n" +
+                    formattedStringDisplay(node.getRightNode(), nextPadding) ;
+        }
+    }
+    
+    public boolean heightCorrect() {
+        return PartsListTreeNode.heightCorrect(root);
     }
 }
