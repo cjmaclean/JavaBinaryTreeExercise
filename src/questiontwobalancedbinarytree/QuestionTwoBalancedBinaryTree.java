@@ -36,8 +36,6 @@ public class QuestionTwoBalancedBinaryTree {
 
     // Create a parts list of at least 10 words, matching the program requirements
     public static PartsListTree initialPartsTree() {
-        // Add in order for it to balance without rotations:
-
         PartsListTree tree = new PartsListTree();
 
         // Start with the first and last items, so the tree will need rebalancing
