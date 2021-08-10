@@ -63,8 +63,6 @@ public class QuestionTwoBalancedBinaryTree {
         PartsListTree example2 = initialPartsTree();
         System.out.println(example2.formattedStringDisplay());
         
-        System.out.println("are the heights correct");
-        System.out.println(example2.heightCorrect());
     }
 
 }

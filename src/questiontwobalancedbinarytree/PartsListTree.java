@@ -199,7 +199,5 @@ public class PartsListTree {
         }
     }
     
-    public boolean heightCorrect() {
-        return PartsListTreeNode.heightCorrect(root);
-    }
+
 }

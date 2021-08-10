@@ -53,57 +53,5 @@ public class PartsListTreeNodeTest {
         assertEquals(2, node1.getHeight());
     }
 
-    /**
-     * Test of heightCorrect method, of class PartsListTreeNode.
-     */
-    @Test
-    public void testHeightCorrect_0args() {
- 
-        System.out.println("heightCorrect");
-        PartsListTreeNode instance = new PartsListTreeNode("differential");
-        boolean expResult = true;
-        boolean result = instance.heightCorrect();
-        assertEquals(expResult, result);
-        
-        // Changing the height of the subnodes later will confuse the height
-        PartsListTreeNode node2 = new PartsListTreeNode("gearbox");
-        instance.setRightNode(node2);
-        PartsListTreeNode node3 = new PartsListTreeNode("wheel");
-        node2.setRightNode(node3);
-        
-        expResult = false;
-        result = PartsListTreeNode.heightCorrect(instance);
-        assertEquals(expResult, result);        
-    }
-
-    /**
-     * Test of heightCorrect method, of class PartsListTreeNode.
-     */
-    @Test
-    public void testHeightCorrect_PartsListTreeNode() {
-        System.out.println("heightCorrect");
-
-        // Test null case
-        PartsListTreeNode node = null;
-        boolean expResult = true;
-        boolean result = PartsListTreeNode.heightCorrect(node);
-        assertEquals(expResult, result);
-
-        node = new PartsListTreeNode("differential");
-        expResult = true;
-        result = PartsListTreeNode.heightCorrect(node);
-        assertEquals(expResult, result);
-
-        // Changing the height of the subnodes later will confuse the height
-        PartsListTreeNode node2 = new PartsListTreeNode("gearbox");
-        node.setRightNode(node2);
-        PartsListTreeNode node3 = new PartsListTreeNode("wheel");
-        node2.setRightNode(node3);
-        
-        expResult = false;
-        result = PartsListTreeNode.heightCorrect(node);
-        assertEquals(expResult, result);        
-
-    }
 
 }

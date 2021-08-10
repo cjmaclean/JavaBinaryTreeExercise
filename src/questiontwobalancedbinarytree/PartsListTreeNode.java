@@ -90,27 +90,5 @@ public class PartsListTreeNode {
         // One more than the height of the highest subtree.
         height = 1 + Integer.max(getHeight(getLeftNode()), getHeight(getRightNode()));
     }
-
-    public boolean heightCorrect() {
-        int computedHeight = 1 + Integer.max(getHeight(getLeftNode()), getHeight(getRightNode()));
-        if (height != computedHeight) {
-            return false;
-        } else if (!heightCorrect(getLeftNode())) {
-            return false;
-        } else if (!heightCorrect(getRightNode())) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public static boolean heightCorrect(PartsListTreeNode node) {
-        if (node == null) {
-            // No stored height
-            return true;
-        } else {
-            return node.heightCorrect();
-        }
-    }
     
 }
