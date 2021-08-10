@@ -15,6 +15,8 @@ import java.util.Scanner;
  */
 public class QuestionTwoBalancedBinaryTree {
 
+    static private PartsListTree parts = initialPartsTree();
+
     // Create a parts list of at least 10 words, matching the program requirements
     public static PartsListTree initialPartsTree() {
         PartsListTree tree = new PartsListTree();
@@ -38,7 +40,6 @@ public class QuestionTwoBalancedBinaryTree {
 
     public static void main(String[] args) {
 
-        PartsListTree parts = initialPartsTree();
         System.out.println(parts.formattedStringDisplay());
 
         System.out.println("");
@@ -61,7 +62,7 @@ public class QuestionTwoBalancedBinaryTree {
             } else if (commandString.equals("s")) {
                 System.out.println("Please enter part to search for");
                 inputWord = sc.next();
-                if(parts.contains(inputWord)) {
+                if (parts.contains(inputWord)) {
                     System.out.println("Found it!");
                 } else {
                     System.out.println("That's not in the parts list");
