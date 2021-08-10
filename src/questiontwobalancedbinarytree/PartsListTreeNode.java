@@ -6,7 +6,7 @@ package questiontwobalancedbinarytree;
  */
 // Class to store a node in a binary tree of mechanical parts.
 // Note: if the left or right tree is changed, setLeftNode or setRightNode
-// should be called to make sure the height is recalculated.
+// should be called afterwards - this will make sure the height is recalculated.
 public class PartsListTreeNode {
 
     private String part;
