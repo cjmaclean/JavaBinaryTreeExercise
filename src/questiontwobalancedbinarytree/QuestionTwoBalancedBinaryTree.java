@@ -1,5 +1,7 @@
 package questiontwobalancedbinarytree;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Caspian Maclean 30039802 30/7/2021
@@ -21,7 +23,7 @@ public class QuestionTwoBalancedBinaryTree {
         tree.add("valve");
 
         tree.add("axle");
-        tree.add("hose");        
+        tree.add("hose");
         tree.add("belt");
         tree.add("gasket");
         tree.add("cam");
@@ -36,10 +38,46 @@ public class QuestionTwoBalancedBinaryTree {
 
     public static void main(String[] args) {
 
-        System.out.println("balance challenge");
-        PartsListTree example2 = initialPartsTree();
-        System.out.println(example2.formattedStringDisplay());
-        
+        PartsListTree parts = initialPartsTree();
+        System.out.println(parts.formattedStringDisplay());
+
+        System.out.println("");
+        System.out.println("Please enter a command: a for add,"
+                + " s for search, r for remove, or q to quit program:");
+
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            // Loop until breaking out of loop due to a "q" command.
+
+            String commandString = sc.next();
+            String inputWord = "";
+
+            if (commandString.equals("q")) {
+                break;
+            } else if (commandString.equals("a")) {
+                System.out.println("Please enter part to add");
+                inputWord = sc.next();
+                parts.add(inputWord);
+            } else if (commandString.equals("s")) {
+                System.out.println("Please enter part to search for");
+                inputWord = sc.next();
+                if(parts.contains(inputWord)) {
+                    System.out.println("Found it!");
+                } else {
+                    System.out.println("That's not in the parts list");
+                }
+
+            } else if (commandString.equals("r")) {
+                System.out.println("Please enter part to remove");
+                inputWord = sc.next();
+                parts.remove(inputWord);
+
+            } else {
+                System.out.println("Command not understood. Enter q to quit program.");
+            }
+
+        }
+
     }
 
 }
