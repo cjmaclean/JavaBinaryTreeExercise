@@ -62,45 +62,4 @@ public class PartsListTreeTest {
         assertFalse(tree.contains("gearbox"));
         assertFalse(tree.contains("acksell"));
     }
-
-    public PartsListTreeNode exampleBalancedTreeNode() {
-        PartsListTreeNode axle = new PartsListTreeNode("axle");
-        PartsListTreeNode belt = new PartsListTreeNode("belt");
-        PartsListTreeNode cog = new PartsListTreeNode("cog");
-        PartsListTreeNode connectingRod = new PartsListTreeNode("connecting rod");
-        PartsListTreeNode cylinder = new PartsListTreeNode("cylinder");
-        PartsListTreeNode diff = new PartsListTreeNode("diff");
-        PartsListTreeNode gasket = new PartsListTreeNode("gasket");
-        belt.setLeftNode(axle);
-        belt.setRightNode(cog);
-        diff.setLeftNode(cylinder);
-        diff.setRightNode(gasket);
-        connectingRod.setLeftNode(belt);
-        connectingRod.setRightNode(diff);
-        return connectingRod;
-    }
-
-    public PartsListTree exampleBalancedTree() {
-        // Add in order for it to balance without rotations:
-
-        PartsListTree tree = new PartsListTree();
-
-        //top node
-        tree.add("connecting rod");
-
-        //second level nodes
-        tree.add("belt");
-        tree.add("diff");
-
-        // third level nodes
-        tree.add("axle");
-        tree.add("cog");
-        tree.add("cylinder");
-        tree.add("gasket");
-
-        return tree;
-    }
-
-
-
 }
