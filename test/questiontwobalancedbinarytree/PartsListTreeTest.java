@@ -101,29 +101,6 @@ public class PartsListTreeTest {
         return tree;
     }
 
-    /**
-     * Test of rotateNodeLeft method, of class PartsListTree.
-     */
-    @Test
-    public void testRotateNodeLeft() {
-        PartsListTreeNode root = exampleBalancedTreeNode();
-        root = PartsListTree.rotateNodeLeft(root);
-        System.out.println("rotate left:");
 
-        System.out.println(PartsListTree.formattedStringDisplay(root, ""));
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of rotateNodeRight method, of class PartsListTree.
-     */
-    @Test
-    public void testRotateNodeRight() {
-        PartsListTreeNode root = exampleBalancedTreeNode();
-        root = PartsListTree.rotateNodeRight(root);
-        System.out.println("rotate right:");
-        System.out.println(PartsListTree.formattedStringDisplay(root, ""));
-        fail("The test case is a prototype.");
-    }
 
 }

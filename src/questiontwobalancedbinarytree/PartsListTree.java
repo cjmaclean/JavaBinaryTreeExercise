@@ -111,7 +111,7 @@ public class PartsListTree {
     
     // Balancing functions
     
-    static public PartsListTreeNode rotateNodeLeft(PartsListTreeNode topNode) {
+    static private PartsListTreeNode rotateNodeLeft(PartsListTreeNode topNode) {
         PartsListTreeNode oldRightNode = topNode.getRightNode();
         PartsListTreeNode newTopNode = oldRightNode;
         PartsListTreeNode midNode = oldRightNode.getLeftNode();
@@ -121,7 +121,7 @@ public class PartsListTree {
         return newTopNode;
     }
 
-    static public PartsListTreeNode rotateNodeRight(PartsListTreeNode topNode) {
+    static private PartsListTreeNode rotateNodeRight(PartsListTreeNode topNode) {
         PartsListTreeNode oldLeftNode = topNode.getLeftNode();
         PartsListTreeNode newTopNode = oldLeftNode;
         PartsListTreeNode midNode = oldLeftNode.getRightNode();
